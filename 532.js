@@ -31,58 +31,34 @@ All the integers in the given input belong to the range: [-1e7, 1e7].
  * @return {number}
  */
 var findPairs = function(nums, k) {
-  var total = 0;
-  var sameValue = 0;
+  // 排序
   nums.sort(function(a, b) {
     return a - b;
   });
 
-  if (k === 0) {
-    var x = nums.filter(function(item, index) {
-      if (index === 0) {
-        return true;
-      } else if (item === nums[index - 1]) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-
-    if (x.length === 1) {
-      return 0;
+  // 统计不同数字出现的频率
+  var numsFreq = {};
+  for(var i = 0, j = nums.length; i < j; i++) {
+    if (i > 0 && nums[i] === nums[i - 1]) {
+      numsFreq[nums[i]]++;
+    } else {
+      numsFreq[nums[i]] = 1;
     }
-
-    var y = x.filter(function(item, index) {
-      if (index === 0) {
-        return true;
-      } else if (item !== x[index - 1]) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-
-    return y.length;
   }
 
-  nums.forEach(function(item, index) {
-    var calc = 0;
-    if (nums.slice(index + 1).includes(item + k) && index < nums.length - 1) {
-      calc++;
+  var result = 0;
+
+  var numsType = Object.keys(numsFreq); // 记录的不同数字
+  for(var i = 0, j = numsType.length; i < j; i++) {
+    if (k === 0 && numsFreq[numsType[i]] >= 2) {
+      result++;
+      // 差的绝对值不可能为负数
+    } else if (k > 0 && numsFreq.hasOwnProperty(Number(numsType[i]) + k)) {
+      result++
     }
+  }
 
-    if (nums[index] === nums[index - 1]) {
-      sameValue++;
-      if (k !== 0) {
-        calc = 0;
-      }
-    }
-
-    total += calc;
-  });
-
-  return total;
+  return result;
 };
 
-
-console.log(findPairs([-1,-2,-3], 1));
+console.log(findPairs([1, 2, 3, 4, 5], -1));
