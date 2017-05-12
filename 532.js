@@ -30,15 +30,15 @@ All the integers in the given input belong to the range: [-1e7, 1e7].
  * @param {number} k
  * @return {number}
  */
-var findPairs = function(nums, k) {
+var findPairs = function (nums, k) {
   // 排序
-  nums.sort(function(a, b) {
+  nums.sort(function (a, b) {
     return a - b;
   });
 
   // 统计不同数字出现的频率
   var numsFreq = {};
-  for(var i = 0, j = nums.length; i < j; i++) {
+  for (var i = 0, j = nums.length; i < j; i++) {
     if (i > 0 && nums[i] === nums[i - 1]) {
       numsFreq[nums[i]]++;
     } else {
@@ -49,7 +49,7 @@ var findPairs = function(nums, k) {
   var result = 0;
 
   var numsType = Object.keys(numsFreq); // 记录的不同数字
-  for(var i = 0, j = numsType.length; i < j; i++) {
+  for (var i = 0, j = numsType.length; i < j; i++) {
     if (k === 0 && numsFreq[numsType[i]] >= 2) {
       result++;
       // 差的绝对值不可能为负数
