@@ -49,10 +49,10 @@ var numberOfBoomerangs = function (points) {
 
     var currentPointDistancesKeys = Object.keys(currentPointDistances);
 
-    for (var m = 0; m < currentPointDistancesKeys.length; m++) {
+    for (var j = 0; j < currentPointDistancesKeys.length; j++) {
       // 如果某种距离出现的次数超过了两次，则统计次数
-      if (currentPointDistances[currentPointDistancesKeys[m]] >= 2) {
-        total += currentPointDistances[currentPointDistancesKeys[m]] * (currentPointDistances[currentPointDistancesKeys[m]] - 1);
+      if (currentPointDistances[currentPointDistancesKeys[j]] >= 2) {
+        total += currentPointDistances[currentPointDistancesKeys[j]] * (currentPointDistances[currentPointDistancesKeys[j]] - 1);
       }
     }
   }
