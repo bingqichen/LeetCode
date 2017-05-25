@@ -22,58 +22,45 @@ Subscribe to see which companies asked this question.
  * @return {number}
  */
 var numberOfBoomerangs = function (points) {
-  console.time('耗时');
-
   if (points.length <= 2) {
     return 0;
   }
 
   var total = 0;
 
-  var pointsCount = points.length;
-  var distances = {};
-  for (var i = 0; i < pointsCount; i++) {
-    for (var j = i + 1; j < pointsCount; j++) {
-      distances[i + '_' + j] = Math.pow(points[i][0] - points[j][0], 2) + Math.pow(points[i][1] - points[j][1], 2);
-    }
-  };
+  for (var i = 0; i < points.length; i++) {
 
-  var distancesKeys = Object.keys(distances);
+    // 记录从当前这个点到其他所有点的距离出现了几种长度并记录每种距离出现的次数
+    var currentPointDistances = {};
 
-  for (var i = 0; i < pointsCount; i++) {
-    // 找出以当前节点为起始点的距离数据
-    var currentDistancesKeys = distancesKeys.filter(function (item) {
-      return (item.split('_')).filter(function (item) {
-        return String(i) === item;
-      }).length;
-    });
+    for (var j = 0; j < points.length; j++) {
+      if (i !== j) {
 
-    // 统计该点到其他各个点出现了几种距离长度，并统计每种距离出现的次数
-    var recordCount = {};
-    for (var j = 0; j < currentDistancesKeys.length; j++) {
-      var distance = distances[currentDistancesKeys[j]];
-      if (recordCount.hasOwnProperty(distance)) {
-        recordCount[distance]++;
-      } else {
-        recordCount[distance] = 1;
+        var distance = calcDistance(points[i][0], points[i][1], points[j][0], points[j][1]);
+
+        if (currentPointDistances.hasOwnProperty(distance)) {
+          currentPointDistances[distance]++;
+        } else {
+          currentPointDistances[distance] = 1;
+        }
+
       }
     }
 
-    // 计算出现了几种长度
-    var recordCountKeys = Object.keys(recordCount);
-    for (var j = 0; j < recordCountKeys.length; j++) {
-      if (recordCount[recordCountKeys[j]] >= 2) {
-        // 如果某种长度 >=2，得到当前长度值出现的频次
-        var distanceFreq = recordCount[recordCountKeys[j]];
+    var currentPointDistancesKeys = Object.keys(currentPointDistances);
 
-        total = total + distanceFreq * (distanceFreq - 1);
+    for (var m = 0; m < currentPointDistancesKeys.length; m++) {
+      // 如果某种距离出现的次数超过了两次，则统计次数
+      if (currentPointDistances[currentPointDistancesKeys[m]] >= 2) {
+        total += currentPointDistances[currentPointDistancesKeys[m]] * (currentPointDistances[currentPointDistancesKeys[m]] - 1);
       }
     }
   }
 
-  console.timeEnd('耗时');
+  function calcDistance(x1, y1, x2, y2) {
+    return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+  }
 
-  console.log(total);
   return total;
 };
 
