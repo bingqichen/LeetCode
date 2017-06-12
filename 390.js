@@ -48,3 +48,7 @@ var lastRemaining = function (n) {
 };
 
 console.log(lastRemaining(6));
+
+/**
+该题需要注意读题，本人第一次读题时只看了 example ，想当然的以为是奇数轮删除1、3、5...位数；偶数轮删除2、4、6...位数，其实是奇数轮从左往右删除，偶数轮从右往左删除，这就导致了少加一个 remaining % 2 === 1 的判断。
+ */
