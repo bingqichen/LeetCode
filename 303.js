@@ -18,7 +18,12 @@ There are many calls to sumRange function.
  * @param {number[]} nums
  */
 var NumArray = function (nums) {
-
+  var sum = 0;
+  this.array = [];
+  for (var i = 0; i < nums.length; i += 1) {
+    sum += nums[i];
+    this.array.push(sum);
+  }
 };
 
 /**
@@ -27,7 +32,8 @@ var NumArray = function (nums) {
  * @return {number}
  */
 NumArray.prototype.sumRange = function (i, j) {
-
+  if (i === 0) return this.array[j];
+  return this.array[j] - this.array[i - 1];
 };
 
 /**
