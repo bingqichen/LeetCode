@@ -22,9 +22,22 @@ Subscribe to see which companies asked this question.
  * @return {number}
  */
 var lengthOfLIS = function (nums) {
+  if (!nums.length) return 0;
+  var lis = [];
+  for (var i = 0; i < nums.length; i += 1) {
+    lis.push(1);
 
+    for (var j = 0; j < i; j += 1) {
+      if (nums[i] > nums[j]) {
+        // lis[i] = lis[j] + 1;
+        lis[i] = Math.max(lis[j] + 1, lis[i]);
+      }
+    }
+  }
+  console.log(lis);
+
+  return Math.max.apply(null, lis);
 };
 
-// lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]);
-lengthOfLIS([4, 10, 4, 3, 8, 9]);
-console.log(lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]))
+console.log(lengthOfLIS([1, 3, 6, 7, 9, 4, 10, 5, 6]));
+// console.log(lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]));
