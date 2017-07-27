@@ -19,5 +19,16 @@ Special thanks to @jianchao.li.fighter for adding this problem and creating all 
  * @return {number}
  */
 var addDigits = function (num) {
-
+  if (num >= 10) {
+    var numStr = String(num);
+    var sum = 0;
+    for(var i = 0; i < numStr.length; i += 1) {
+      sum += Number(numStr[i]);
+    }
+    return addDigits(sum);
+  } else {
+    return num;
+  }
 };
+
+console.log(addDigits(11));
