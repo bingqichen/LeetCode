@@ -29,5 +29,11 @@ The above arrows point to positions where the corresponding bits are different.
  * @return {number}
  */
 var hammingDistance = function(x, y) {
-
+  if (x === 0) {
+    return y.toString(2).length;
+  } else if (y === 0) {
+    return x.toString(2).length;
+  } else {
+    return Math.abs(x.toString(2).length - y.toString(2).length);
+  }
 };
