@@ -1,5 +1,10 @@
 /**
  * js 实现二叉查找树
+ * 二叉查找树，也称二叉搜索树、有序二叉树、排序二叉树，是指一棵空树或者具有下列性质的二叉树：
+ * 1. 若任意节点的左子树不空，则左子树上所有节点的值均小于它的根节点的值；
+ * 2. 若任意节点的右子树不空，则右子树上所有节点的值均大于它的根节点的值；
+ * 3. 任意节点的左、右子树也分别为二叉查找树；
+ * 4. 没有键值相等的节点。
  */
 
 /**
@@ -87,3 +92,19 @@ class Tree {
     return Math.max(this.depth(node.left), this.depth(node.right)) + 1;
   }
 }
+
+const tree = new Tree();
+
+tree.insert(8);
+tree.insert(14);
+tree.insert(13);
+tree.insert(6);
+tree.insert(3);
+tree.insert(7);
+tree.insert(11);
+
+// tree.remove(11);
+
+tree.getMaxDepth();
+
+console.log(tree);
