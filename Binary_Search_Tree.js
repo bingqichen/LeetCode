@@ -77,4 +77,13 @@ class Tree {
       node = data < node.data ? node.left : node.right;
     }
   }
+  getMaxDepth() {
+    return this.depth(this.root);
+  }
+  depth(node) {
+    if (node === null) {
+      return 0;
+    }
+    return Math.max(this.depth(node.left), this.depth(node.right)) + 1;
+  }
 }
