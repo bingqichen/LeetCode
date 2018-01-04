@@ -6,16 +6,18 @@
  * 单个节点
  */
 class Node {
-  constructor(data = null, left = null, right = null) {
+  constructor(data = null) {
     this.data = data;
-    this.left = left;
-    this.right = right;
+    this.left = this.right = null;
   }
 }
 
 class Tree {
-  constructor() {
+  constructor(data = null) {
     this.root = null;
+    if (data) {
+      this.root = new Node(data);
+    }
   }
 
   insert(data) {
