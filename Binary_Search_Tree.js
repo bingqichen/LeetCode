@@ -64,7 +64,7 @@ class Tree {
       return node;
     }
   }
-  find(data){
+  find(data) {
     let node = this.root;
     while(true){
       if (node === null){
