@@ -11,7 +11,7 @@
  * 单个节点
  */
 class Node {
-  constructor(data = null) {
+  constructor(data) {
     this.data = data;
     this.left = this.right = null;
   }
@@ -49,6 +49,7 @@ class Tree {
       }
     }
   }
+
   remove(data) {
     this.root = this.removeNode(this.root, data);
   }
@@ -71,6 +72,7 @@ class Tree {
       return node;
     }
   }
+
   find(data) {
     let node = this.root;
     while(true){
@@ -82,6 +84,7 @@ class Tree {
       node = data < node.data ? node.left : node.right;
     }
   }
+
   getMaxDepth() {
     return this.depth(this.root);
   }
