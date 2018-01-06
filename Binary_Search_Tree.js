@@ -94,6 +94,22 @@ class Tree {
     }
     return Math.max(this.depth(node.left), this.depth(node.right)) + 1;
   }
+
+  levelOrderTraversal() {
+    const que = [this.root];
+    const datas = [];
+    while (que.length) {
+      const node = que.shift();
+      datas.push(node.data);
+      if (node.left) {
+        que.push(node.left);
+      }
+      if (node.right) {
+        que.push(node.right);
+      }
+    }
+    return datas;
+  }
 }
 
 const tree = new Tree();
