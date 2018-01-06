@@ -97,10 +97,10 @@ class Tree {
 
   levelOrderTraversal() {
     const que = [this.root];
-    const datas = [];
+    const list = [];
     while (que.length) {
       const node = que.shift();
-      datas.push(node.data);
+      list.push(node.data);
       if (node.left) {
         que.push(node.left);
       }
@@ -108,7 +108,36 @@ class Tree {
         que.push(node.right);
       }
     }
-    return datas;
+    return list;
+  }
+
+  preOrder(node = this.root, preList = []) {
+    if (node) {
+      preList.push(node.data);
+      this.preOrder(node.left, preList);
+      this.preOrder(node.right, preList);
+    }
+    return preList;
+  }
+
+  inOrder(node = this.root, inList = []) {
+    if (node) {
+      this.inOrder(node.left, inList);
+      inList.push(node.data);
+      this.inOrder(node.right, inList);
+    }
+
+    return inList;
+  }
+
+  postOrder(node = this.root, postList = []) {
+    if (node) {
+      this.postOrder(node.left, postList);
+      this.postOrder(node.right, postList);
+      postList.push(node.data);
+    }
+
+    return postList;
   }
 }
 
