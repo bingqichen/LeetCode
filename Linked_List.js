@@ -67,6 +67,7 @@ class LinkedList {
       this.head = node;
     } else {
       let index = 0;
+      let current = this.head;
       let prev = null;
       while (index < position) {
         prev = current;
