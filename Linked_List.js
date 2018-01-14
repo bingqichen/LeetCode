@@ -97,8 +97,8 @@ class LinkedList {
     return -1;
   }
 
-  remove(val) {
-    const index = this.indexOf(val);
+  remove(val, start = 0) {
+    const index = this.indexOf(val, start);
     return this.removeAt(index);
   }
 
