@@ -67,6 +67,7 @@ class LinkedList {
       this.head = node;
     } else {
       let index = 0;
+      let current = this.head;
       let prev = null;
       while (index < position) {
         prev = current;
@@ -80,24 +81,24 @@ class LinkedList {
     return true;
   }
 
-  indexOf(val, index = 0) {
-    if (index >= this.length) {
+  indexOf(val, start = 0) {
+    if (start >= this.length) {
       return -1;
     }
-    let _index = 0;
+    let index = 0;
     let current = this.head;
-    while (_index < this.length) {
-      if (current.val === val && _index >= index) {
-        return _index;
+    while (index < this.length) {
+      if (current.val === val && index >= start) {
+        return index;
       }
       current = current.next;
-      _index += 1;
+      index += 1;
     }
     return -1;
   }
 
-  remove(val) {
-    const index = this.indexOf(val);
+  remove(val, start = 0) {
+    const index = this.indexOf(val, start);
     return this.removeAt(index);
   }
 
