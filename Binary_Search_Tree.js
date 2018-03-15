@@ -95,7 +95,7 @@ class Tree {
     return Math.max(this.depth(node.left), this.depth(node.right)) + 1;
   }
 
-  levelOrderTraversal() {
+  levelOrderTraversal() { // 广度优先遍历
     const que = [this.root];
     const list = [];
     while (que.length) {
@@ -111,7 +111,7 @@ class Tree {
     return list;
   }
 
-  preOrder(node = this.root, preList = []) {
+  preOrder(node = this.root, preList = []) { // 深度优先遍历：前序遍历
     if (node) {
       preList.push(node.data);
       this.preOrder(node.left, preList);
@@ -120,7 +120,7 @@ class Tree {
     return preList;
   }
 
-  inOrder(node = this.root, inList = []) {
+  inOrder(node = this.root, inList = []) { // 深度优先遍历：中序遍历
     if (node) {
       this.inOrder(node.left, inList);
       inList.push(node.data);
@@ -130,7 +130,7 @@ class Tree {
     return inList;
   }
 
-  postOrder(node = this.root, postList = []) {
+  postOrder(node = this.root, postList = []) { // 深度优先遍历：后序遍历
     if (node) {
       this.postOrder(node.left, postList);
       this.postOrder(node.right, postList);
