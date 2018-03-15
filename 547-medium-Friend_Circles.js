@@ -38,12 +38,32 @@ var findCircleNum = function(M) {
     return (M[0][0] && M[0][0] === 1) ? 1 : 0;
   }
 
-  let count = M[0][0] === 1 ? 1 : 0;
-  let getSplitLine = false;
+  let count = 0;
+  const visited = [];
 
-  for(let i = 0, length1 = M.length; i < length1; i++){
-    for(let j = 0, length2 = M[i].length; j < length2; j++){
-      M[i][j]
+  for (let i = 0; i < M.length; i+=1) {
+    if (!visited[i]) {
+      dfs(M, visited, i);
+      count+=1;
     }
   }
+  return count;
 };
+
+function dfs(M, visited, i) {
+  for (let j = 0; j < M.length; j+=1) {
+    if (M[i][j] === 1 && !visited[j]) {
+      visited[j] = 1;
+      dfs(M, visited, j);
+    }
+  }
+}
+
+
+const count = findCircleNum(
+  [[1, 1, 0],
+  [1, 1, 0],
+  [0, 0, 1]])
+
+console.log(count);
+
