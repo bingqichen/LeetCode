@@ -25,7 +25,7 @@ var generate = function(numRows) {
   }
 
   var res = [];
-  for(var i = 0; i < numRows; i++){
+  for (var i = 0; i < numRows; i++){
     var line = [];
     var lineLen = i + 1;
     for (var j = 0; j < lineLen; j++){
